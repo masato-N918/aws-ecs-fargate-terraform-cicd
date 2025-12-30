@@ -14,18 +14,18 @@ resource "aws_lb" "alb" {
 
 # Security Group for ALB
 
-resource "aws_security_group" "alb-sg" {
-  name        = "alb-sg"
+resource "aws_security_group" "alb_sg" {
+  name        = "alb_sg"
   description = "Security group for ALB"
   vpc_id      = var.vpc_id
 
   tags = {
-    Name = "alb-sg"
+    Name = "alb_sg"
   }
 }
 
 resource "aws_vpc_security_group_ingress_rule" "alb_ingress_http" {
-  security_group_id = aws_security_group.alb-sg.id
+  security_group_id = aws_security_group.alb_sg.id
   from_port         = 80
   to_port           = 80
   ip_protocol       = "tcp"
@@ -33,7 +33,7 @@ resource "aws_vpc_security_group_ingress_rule" "alb_ingress_http" {
 }
 
 resource "aws_vpc_security_group_egress_rule" "alb_egress_all" {
-  security_group_id = aws_security_group.alb-sg.id
+  security_group_id = aws_security_group.alb_sg.id
   from_port         = 80
   to_port           = 80
   ip_protocol       = "tcp"
@@ -42,8 +42,8 @@ resource "aws_vpc_security_group_egress_rule" "alb_egress_all" {
 
 # Create Target Group for ALB
 
-resource "aws_lb_target_group" "alb-tg" {
-  name     = "main-alb-tg"
+resource "aws_lb_target_group" "alb_tg" {
+  name     = "main_alb_tg"
   port     = 80
   protocol = "HTTP"
   target_type = "ip"
@@ -60,19 +60,19 @@ resource "aws_lb_target_group" "alb-tg" {
   }
 
   tags = {
-    Name = "main-alb-tg"
+    Name = "main_alb_tg"
   }
 }
 
 # Create Listener for ALB
 
-resource "aws_lb_listener" "alb-listener" {
+resource "aws_lb_listener" "alb_listener" {
   load_balancer_arn = aws_lb.alb.arn
   port              = 80
   protocol          = "HTTP"
 
   default_action {
-    target_group_arn = aws_lb_target_group.alb-tg.arn
+    target_group_arn = aws_lb_target_group.alb_tg.arn
     type             = "forward"
   }
 }
