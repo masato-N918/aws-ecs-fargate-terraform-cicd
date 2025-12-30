@@ -13,6 +13,11 @@ variable "aws_region" {
   type        = string
 }
 
+variable "sidecar_image_url" {
+  description = "The Docker image for the sidecar container"
+  type        = string
+}
+
 variable "subnet_ids" {
   description = "The IDs of the subnets"
   type        = list(string)

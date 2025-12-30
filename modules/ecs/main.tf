@@ -55,6 +55,25 @@ resource "aws_ecs_task_definition" "ecs_task" {
           protocol      = "tcp"
         }
       ]
+    },
+    {
+      name     = "sidecar_container"
+      image    = var.sidecar_image_url
+      essential = true
+      logConfiguration = {
+        logDriver = "awslogs"
+        options = {
+          "awslogs-group"         = aws_cloudwatch_log_group.ecs_logs.name
+          "awslogs-region"        = var.aws_region
+          "awslogs-stream-prefix" = "ecs-sidecar"
+        }
+      }
+        portMappings = [
+            {
+            containerPort = 8080
+            protocol      = "tcp"
+            }
+        ]
     }
   ])
 
@@ -115,7 +134,7 @@ resource "aws_ecs_service" "ecs_service" {
   name            = "my_ecs_service"
   cluster         = aws_ecs_cluster.ecs_cluster.id
   task_definition = aws_ecs_task_definition.ecs_task.arn
-  desired_count   = 1
+  desired_count   = 2
   launch_type     = "FARGATE"
 
   network_configuration {
