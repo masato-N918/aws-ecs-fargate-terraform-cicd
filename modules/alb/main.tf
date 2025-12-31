@@ -37,7 +37,6 @@ resource "aws_vpc_security_group_egress_rule" "alb_egress_all" {
   from_port         = 80
   to_port           = 80
   ip_protocol       = "tcp"
-  referenced_security_group_id = var.ecs_sg_id
 }
 
 # Create Target Group for ALB
