@@ -23,7 +23,7 @@ resource "aws_vpc_security_group_egress_rule" "ecs_sg_egress" {
   from_port        = 0
   to_port          = 0
   ip_protocol      = "-1"
-  cidr_ipv4     = ["0.0.0.0/0"]
+  cidr_ipv4        = "0.0.0.0/0"
 }
 
 # ECS Task Definition
