@@ -4,7 +4,7 @@ resource "aws_lb" "alb" {
   name               = "main-alb"
   internal           = false
   load_balancer_type = "application"
-  security_groups    = [aws_security_group.alb-sg.id]
+  security_groups    = [aws_security_group.alb_sg.id]
   subnets            = var.public_subnet_ids
 
   tags = {
@@ -29,7 +29,7 @@ resource "aws_vpc_security_group_ingress_rule" "alb_ingress_http" {
   from_port         = 80
   to_port           = 80
   ip_protocol       = "tcp"
-  cidr_ipv4         = ["0.0.0.0/0"]
+  cidr_ipv4         = "0.0.0.0/0"
 }
 
 resource "aws_vpc_security_group_egress_rule" "alb_egress_all" {
@@ -37,12 +37,13 @@ resource "aws_vpc_security_group_egress_rule" "alb_egress_all" {
   from_port         = 80
   to_port           = 80
   ip_protocol       = "tcp"
+  cidr_ipv4         = "0.0.0.0/0"
 }
 
 # Create Target Group for ALB
 
 resource "aws_lb_target_group" "alb_tg" {
-  name     = "main_alb_tg"
+  name     = "main-alb-tg"
   port     = 80
   protocol = "HTTP"
   target_type = "ip"
