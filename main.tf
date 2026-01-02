@@ -19,6 +19,5 @@ module "ecs" {
   subnet_ids = module.vpc.private_subnet_ids
   alb_security_group_id = module.alb.alb_security_group_id
   alb_target_group_arn = module.alb.alb_target_group_arn
-  sidecar_image_url = module.ecr.ecr_repository_url
-
+  sidecar_image_url = module.ecr.repository_url
 }
