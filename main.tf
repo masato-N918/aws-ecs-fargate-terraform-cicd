@@ -21,3 +21,12 @@ module "ecs" {
   alb_target_group_arn = module.alb.alb_target_group_arn
   sidecar_image_url = module.ecr.repository_url
 }
+
+module "rds" {
+  source = "./modules/rds"
+  vpc_id = module.vpc.vpc_id
+  db_subnet_ids = module.vpc.private_subnet_ids
+  ecs_security_group_id = module.ecs.ecs_security_group_id
+  db_username = var.db_username
+  db_password = var.db_password
+}
