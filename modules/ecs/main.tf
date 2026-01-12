@@ -136,6 +136,11 @@ resource "aws_ecs_service" "ecs_service" {
   task_definition = aws_ecs_task_definition.ecs_task.arn
   desired_count   = 2
   launch_type     = "FARGATE"
+  
+  deployment_circuit_breaker {
+    enable = true
+    rollback = true
+  }
 
   network_configuration {
     subnets         = var.subnet_ids
