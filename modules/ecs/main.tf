@@ -20,8 +20,6 @@ resource "aws_vpc_security_group_ingress_rule" "ecs_sg_ingress" {
 
 resource "aws_vpc_security_group_egress_rule" "ecs_sg_egress" {
   security_group_id = aws_security_group.ecs_sg.id
-  from_port        = 0
-  to_port          = 0
   ip_protocol      = "-1"
   cidr_ipv4        = "0.0.0.0/0"
 }
@@ -136,7 +134,7 @@ resource "aws_ecs_service" "ecs_service" {
   task_definition = aws_ecs_task_definition.ecs_task.arn
   desired_count   = 2
   launch_type     = "FARGATE"
-  
+
   deployment_circuit_breaker {
     enable = true
     rollback = true
