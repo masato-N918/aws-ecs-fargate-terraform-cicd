@@ -24,7 +24,7 @@ resource "aws_ecr_lifecycle_policy" "sidecar_lifecycle" {
         description  = "Expire old images"
         selection    = {
           tagStatus    = "tagged"
-          tagprefixList = [""]
+          tagPrefixList = [""]
           countType    = "imageCountMoreThan"
           countNumber  = 3
         }
