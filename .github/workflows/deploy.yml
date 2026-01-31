@@ -12,7 +12,7 @@ env:
   AWS_REGION: ap-northeast-1
   ECR_REPOSITORY: ecs-app
   ECS_SERVICE: ecs-service
-  ECS_CLUSTER: ecs-cluster
+  ECS_CLUSTER: my_ecs_cluster
   ECS_TASK_DEFINITION: my_ecs_task
   CONTAINER_NAME: app
 
