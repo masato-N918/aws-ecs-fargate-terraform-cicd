@@ -12,7 +12,7 @@
 - **ALB**: Application Load Balancer でトラフィックを分散
 - **ECS Fargate**: サーバーレスコンテナ実行環境
 - **ECR**: Elastic Container Registry でコンテナイメージを管理
-- **RDS**: PostgreSQL データベース
+- **RDS**: MySQL データベース
 
 ## 前提条件
 
@@ -78,7 +78,7 @@ GitHub リポジトリの Settings > Secrets and variables > Actions で以下�
 - **Containerization**: Docker
 - **Programming Language**: Python
 - **Web Framework**: FastAPI
-- **Database**: PostgreSQL
+- **Database**: MySQL
 
 ## アプリケーションのデプロイ
 
