@@ -73,7 +73,8 @@ jobs:
         run: terraform init
 
       - name: Terraform plan
-        run: terraform plan
+        run: |
+          terraform plan -var="db_username=${{ secrets.DB_USERNAME }}" -var="db_password=${{ secrets.DB_PASSWORD }}"
 
       - name: Terraform apply
         run: terraform apply -auto-approve
