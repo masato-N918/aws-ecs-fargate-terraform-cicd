@@ -103,7 +103,7 @@ jobs:
         id: register-task-def
         run: |
           aws ecs register-task-definition --cli-input-json file://updated-task-definition.json
-          echo "task-definition-arn=$(aws ecs describe-task-definition --task-definition ${{ env.ECS_SERVICE }} --query 'taskDefinition.taskDefinitionArn' --output text)" >> $GITHUB_OUTPUT
+          echo "task-definition-arn=$(aws ecs describe-task-definition --task-definition ${{ env.ECS_TASK_DEFINITION }} --query 'taskDefinition.taskDefinitionArn' --output text)" >> $GITHUB_OUTPUT
 
       - name: Update ECS service
         run: |
