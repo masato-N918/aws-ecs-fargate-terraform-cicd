@@ -4,7 +4,9 @@
 
 ## アーキテクチャ
 
-プロジェクトのアーキテクチャ図は `images/architecture.drawio` にあります。
+![Architecture](images/architecture.svg)
+
+プロジェクトのアーキテクチャ図は `images/architecture.drawio` および `images/architecture.svg` にあります。
 
 - **VPC**: プライベートサブネットとパブリックサブネットを含む仮想ネットワーク
 - **ALB**: Application Load Balancer でトラフィックを分散
@@ -68,7 +70,21 @@ GitHub リポジトリの Settings > Secrets and variables > Actions で以下�
 
 ワークフローファイル: `.github/workflows/deploy.yml`
 
+## 使用技術
+
+- **Infrastructure as Code**: Terraform
+- **Cloud Provider**: AWS (VPC, ALB, ECS Fargate, ECR, RDS)
+- **CI/CD**: GitHub Actions
+- **Containerization**: Docker
+- **Programming Language**: Python
+- **Web Framework**: FastAPI
+- **Database**: PostgreSQL
+
 ## アプリケーションのデプロイ
+
+アプリケーションのデプロイは GitHub Actions により自動化されています。main ブランチへのプッシュ時にインフラ構築とアプリケーションデプロイが行われます。
+
+手動デプロイが必要な場合は、以下の手順を実行してください：
 
 1. ECR リポジトリにイメージをプッシュします：
 
