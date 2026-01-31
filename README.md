@@ -80,6 +80,20 @@ GitHub リポジトリの Settings > Secrets and variables > Actions で以下�
 - **Web Framework**: FastAPI
 - **Database**: MySQL
 
+## 設計方針・意図
+
+- ECS Task は 1 Task / 2 コンテナ構成とし、
+  - 公式イメージ（nginx）
+  - Dockerfile からビルドしたアプリケーション
+  を同一 Task 内で動作させています。
+
+- アプリケーションコンテナは直接外部公開せず、
+  ALB → ECS（nginx）経由のみアクセス可能としています。
+  これはセキュリティ境界を ALB に集約する設計を意識したものです。
+
+- ECS の network mode は awsvpc を採用し、
+  Security Group を Task 単位で制御できるようにしています。
+
 ## アプリケーションのデプロイ
 
 アプリケーションのデプロイは GitHub Actions により自動化されています。main ブランチへのプッシュ時にインフラ構築とアプリケーションデプロイが行われます。
@@ -110,18 +124,6 @@ GitHub リポジトリの Settings > Secrets and variables > Actions で以下�
 
 - エンドポイント: `http://<alb-dns-name>/`
 - レスポンス: `{"message": "Hello from ECS app container"}`
-
-## ローカル開発
-
-ローカルでアプリケーションをテストするには：
-
-```bash
-cd app
-pip install fastapi uvicorn
-uvicorn app:app --reload
-```
-
-ブラウザで `http://localhost:8000` にアクセスしてください。
 
 ## クリーンアップ
 
