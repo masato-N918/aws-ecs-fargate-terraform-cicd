@@ -13,6 +13,7 @@ env:
   ECR_REPOSITORY: ecs-app
   ECS_SERVICE: ecs-service
   ECS_CLUSTER: ecs-cluster
+  ECS_TASK_DEFINITION: my_ecs_task
   CONTAINER_NAME: app
 
 jobs:
@@ -92,7 +93,7 @@ jobs:
 
       - name: Download task definition
         run: |
-          aws ecs describe-task-definition --task-definition ${{ env.ECS_SERVICE }} --query taskDefinition > task-definition.json
+          aws ecs describe-task-definition --task-definition ${{ env.ECS_TASK_DEFINITION }} --query taskDefinition > task-definition.json
 
       - name: Update task definition
         run: |
