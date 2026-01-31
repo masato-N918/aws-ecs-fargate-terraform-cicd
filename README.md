@@ -1,6 +1,6 @@
 # AWS ECS Fargate Terraform CI/CD
 
-このプロジェクトは、Terraform を使用して AWS 上に ECS Fargate 環境を構築し、Python (FastAPI) アプリケーションをデプロイするための CI/CD パイプラインを提供します。
+このプロジェクトは、今までに学習したTerraform、GitHubActionsを使用して AWS 上に ECS Fargate 環境を構築し、アプリケーションをデプロイするための CI/CD パイプラインを提供します。
 
 ## アーキテクチャ
 
@@ -82,7 +82,7 @@ GitHub リポジトリの Settings > Secrets and variables > Actions で以下�
 
 ## 設計方針・意図
 
-- ECS Task は 1 Task / 2 コンテナ構成とし、
+- ECS Task は 1Task / 2コンテナ構成とし、
   - 公式イメージ（nginx）
   - Dockerfile からビルドしたアプリケーション
   を同一 Task 内で動作させています。
@@ -133,6 +133,9 @@ GitHub リポジトリの Settings > Secrets and variables > Actions で以下�
 terraform destroy
 ```
 
-## 注意事項
+## 制約・今後の改善点
 
-- このプロジェクトはデモ目的です。本番環境での使用にはセキュリティ設定の強化が必要です。
+- 今後の改善点として、以下の追加が必要と考えています
+  - IAM 権限の最小化
+  - CloudWatch Alarms による監視強化
+  - Secrets Manager を用いた機密情報管理
