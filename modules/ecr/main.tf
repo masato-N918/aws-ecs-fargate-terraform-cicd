@@ -1,7 +1,7 @@
 # ECR repository for sidecar container
 
 resource "aws_ecr_repository" "sidecar" {
-  name = "sidecar"
+  name = "ecs-app"
 
   image_scanning_configuration {
     scan_on_push = true
