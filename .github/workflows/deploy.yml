@@ -97,7 +97,7 @@ jobs:
 
       - name: Update task definition
         run: |
-          jq --arg IMAGE "${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ github.sha }}" '.containerDefinitions[0].image = $IMAGE' task-definition.json > updated-task-definition.json
+          jq 'del(.taskDefinitionArn, .revision, .status, .requiresAttributes, .compatibilities, .registeredAt, .registeredBy, .deregisteredAt, .tags) | .containerDefinitions[0].image = "${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ github.sha }}"' task-definition.json > updated-task-definition.json
 
       - name: Register new task definition
         id: register-task-def
