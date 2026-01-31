@@ -48,6 +48,24 @@
    terraform apply
    ```
 
+## CI/CD セットアップ
+
+このプロジェクトでは GitHub Actions を使用して CI/CD を自動化しています。
+
+### GitHub Secrets の設定
+
+GitHub リポジトリの Settings > Secrets and variables > Actions で以下のシークレットを設定してください：
+
+- `AWS_ACCESS_KEY_ID`: AWS アクセスキー ID
+- `AWS_SECRET_ACCESS_KEY`: AWS シークレットアクセスキー
+
+### ワークフロー
+
+- **main ブランチへのプッシュ**: コードの検証、テスト、Terraform の plan と apply（インフラ構築）、Docker イメージのビルドと ECR プッシュ、ECS サービスの更新が行われます。
+- **プルリクエスト**: コードの検証とテストのみ実行されます。
+
+ワークフローファイル: `.github/workflows/deploy.yml`
+
 ## アプリケーションのデプロイ
 
 1. ECR リポジトリにイメージをプッシュします：
