@@ -5,26 +5,26 @@ on:
     branches:
       - main
     paths:
-      - '.github/**'
-      - 'modules/**'
-      - 'app/**'
-      - 'main.tf'
-      - 'variables.tf'
-      - 'outputs.tf'
-      - 'backend.tf'
-      - 'provider.tf'
+      - ".github/**"
+      - "modules/**"
+      - "app/**"
+      - "main.tf"
+      - "variables.tf"
+      - "outputs.tf"
+      - "backend.tf"
+      - "provider.tf"
   pull_request:
     branches:
       - main
     paths:
-      - '.github/**'
-      - 'modules/**'
-      - 'app/**'
-      - 'main.tf'
-      - 'variables.tf'
-      - 'outputs.tf'
-      - 'backend.tf'
-      - 'provider.tf'
+      - ".github/**"
+      - "modules/**"
+      - "app/**"
+      - "main.tf"
+      - "variables.tf"
+      - "outputs.tf"
+      - "backend.tf"
+      - "provider.tf"
 
 env:
   AWS_REGION: ap-northeast-1
