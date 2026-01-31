@@ -58,6 +58,8 @@ GitHub リポジトリの Settings > Secrets and variables > Actions で以下�
 
 - `AWS_ACCESS_KEY_ID`: AWS アクセスキー ID
 - `AWS_SECRET_ACCESS_KEY`: AWS シークレットアクセスキー
+- `DB_USERNAME`: RDS データベースのユーザー名
+- `DB_PASSWORD`: RDS データベースのパスワード
 
 ### ワークフロー
 
